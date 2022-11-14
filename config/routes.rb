@@ -2,7 +2,9 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   resources :clearances
-  draw :madmin
+  authenticate :user, ->(user) { user.admin? } do
+    draw :madmin
+  end
   get '/privacy', to: 'home#privacy'
   get '/terms', to: 'home#terms'
   authenticate :user, lambda { |u| u.admin? } do
