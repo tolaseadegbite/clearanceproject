@@ -1,0 +1,49 @@
+<%= form_with(model: clearance) do |form| %>
+  <% if clearance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(clearance.errors.count, "error") %> prohibited this clearance from being saved:</h2>
+
+      <ul>
+      <% clearance.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <h6><%= form.label :session, class: 'form-label' %></h6>
+    <%= form.text_field :session, class: 'form-control' %>
+  </div>
+
+  <div class="my-3">
+      <h6><%= form.label :degree, class: "form-label" %></h6>
+      <%= form.select :degree, Clearance.degrees.keys.map{ |key| [key.humanize.upcase, key] }, prompt: "Select degree to be cleared", class: "form-select", selected: @clearance.degree %>
+  </div>
+
+  <div class="mb-3">
+    <h6><%= form.label :link, class: 'form-label' %></h6>
+    <%= form.text_field :link, class: 'form-control' %>
+  </div>
+
+  <!--<%# <div class="mb-3">
+    <%#= form.label :user_id, class: 'form-label' %>
+      <%#= form.text_field :user_id, class: 'form-control' %>
+  </div>-->
+
+  <div class="mb-3">
+    <% if clearance.persisted? %>
+      <div class="float-end">
+        <%= link_to 'Destroy', clearance, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if clearance.persisted? %>
+      <%= link_to "Cancel", clearance, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", clearances_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

@@ -7,7 +7,7 @@
 
 <nav class="navbar navbar-expand-md navbar-light bg-light">
   <div class="container mx-auto">
-    <%= link_to Rails.configuration.application_name, root_path, class: "navbar-brand" %>
+    <%= link_to "CLEARANCE PROJECT", root_path, class: "navbar-brand" %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -22,9 +22,9 @@
         <% if user_signed_in? %>
 
           <li class="nav-item">
-            <%= link_to notifications_path, class: "nav-link" do %>
+            <%#= link_to notifications_path, class: "nav-link" do %>
               <span><i class="far fa-bell" aria-hidden="true"></i></span>
-            <% end %>
+            <%# end %>
           </li>
 
           <li class="nav-item dropdown">

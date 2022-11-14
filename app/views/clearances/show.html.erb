@@ -1,0 +1,34 @@
+<div class="page-header">
+  <%= link_to clearances_path, class: 'btn btn-default' do %>
+    My Clearances
+  <% end %>
+  <%= link_to edit_clearance_path(@clearance), class: 'btn btn-primary btn-sm' do %>
+    Edit
+  <% end %>
+  <h1>
+    <%= @clearance.degree.upcase %> (<%= @clearance.session %>)
+  </h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Date submitted:</dt> 
+  <dd><%= @clearance.created_at.strftime("#{@clearance.created_at.day.ordinalize} %B %Y") %></dd>
+  <dt>Google Drive Link:</dt>
+  <hr>
+  <dt>
+    Status:
+    <% if @clearance.status == "pending" %>
+      <%= link_to @clearance.status.capitalize, "#", class: "btn btn-sm btn-info" %>
+    <% elsif @clearance.status == "successful" %>
+      <%= link_to @clearance.status.capitalize, "#", class: "btn btn-sm btn-success" %>
+    <% else %>
+      <%= link_to @clearance.status.capitalize, "#", class: "btn btn-sm btn-danger" %>
+    <% end %>
+  </dt>
+  <dt>Google Drive Link:</dt>
+  <dd><%= link_to @clearance.link %></dd>
+  <dt>User:</dt>
+  <dd><%= @clearance.user.name %> (<%= @clearance.user.matric_number %>)</dd>
+  <dt>Degree:</dt>
+  <dd><%= @clearance.degree %></dd>
+</dl>
