@@ -1,10 +1,6 @@
 <h1>New clearance</h1>
 <hr>
 <div class="row">
-    <div class="col-md-8">
-        <%= render 'form', clearance: @clearance %>
-    </div>
-
     <div class="col-md-4">
         <h4>While applying for a clearance, adhere to the following instructions: </h4>
         <ol>
@@ -13,5 +9,9 @@
             <li>Rule 3</li>
             <li>Rule 4</li>
         </ol>
+    </div>
+
+    <div class="col-md-8">
+        <%= render 'form', clearance: @clearance %>
     </div>
 </div>
