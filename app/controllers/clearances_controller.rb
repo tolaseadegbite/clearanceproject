@@ -5,7 +5,11 @@ class ClearancesController < ApplicationController
 
   # GET /clearances or /clearances.json
   def index
-    @clearances = current_user.clearances.order(created_at: :desc)
+    if !current_user.admin?
+      @clearances = current_user.clearances.order(created_at: :desc)
+    else
+      @clearances = Clearance.all.order(created_at: :desc)
+    end
   end
 
   # GET /clearances/1 or /clearances/1.json

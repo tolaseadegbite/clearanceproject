@@ -1,4 +1,4 @@
-<% if current_user.clearances.blank? %>
+<% if current_user.clearances.blank? && !current_user.admin? %>
   <div class="apply text-center">
     <h1>You have not applied for any clearance</h1>
     <%= link_to new_clearance_path, class: 'btn btn-primary' do %>
@@ -28,6 +28,9 @@
           <%# <th>User</th> %>
           <th>Degree</th>
           <th>Session</th>
+          <% if current_user.admin? %>
+            <th>Requested by</th>
+          <% end %>
           <th>Status</th>
           <th>Date</th>
           <th>Action</th>
@@ -43,6 +46,9 @@
             <%# <td>= clearance.user</td> %>
             <td><%= clearance.degree.upcase %></td>
             <td><%= clearance.session %></td>
+            <% if current_user.admin? %>
+              <td><%= clearance.user.name %> (<%= clearance.user.matric_number %>)</td>
+            <% end %>
             <% if clearance.status == "pending" %>
               <td><%= link_to clearance.status.capitalize, "#", class: "btn btn-sm btn-primary" %></td>
             <% elsif clearance.status == "successful" %>

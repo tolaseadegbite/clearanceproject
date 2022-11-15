@@ -9,9 +9,11 @@
         <%= f.text_field :name, autofocus: false, class: 'form-control', placeholder: "Full name" %>
       </div>
 
-      <div class="mb-3">
-        <%= f.text_field :matric_number, autofocus: false, class: 'form-control', placeholder: "Matric number" %>
-      </div>
+      <% if !current_user.admin? %>
+        <div class="mb-3">
+          <%= f.text_field :matric_number, autofocus: false, class: 'form-control', placeholder: "Matric number" %>
+        </div>
+      <% end %>
 
       <div class="mb-3">
         <%= f.email_field :email, class: 'form-control', placeholder: 'Email Address' %>

@@ -1,13 +1,18 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+
   resources :clearances
-  authenticate :user, ->(user) { user.admin? } do
-    draw :madmin
-  end
+
+  # authenticate :user, ->(user) { user.admin? } do
+  # draw :madmin
+  # end
+  
   get '/privacy', to: 'home#privacy'
   get '/terms', to: 'home#terms'
+
   authenticate :user, lambda { |u| u.admin? } do
+    draw :madmin
     mount Sidekiq::Web => '/sidekiq'
 
     namespace :madmin do
@@ -19,8 +24,11 @@ Rails.application.routes.draw do
   end
 
   # resources :notifications, only: [:index]
+
   resources :announcements, only: [:index]
-  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
+
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: "registrations" }
+
   root to: 'clearances#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
