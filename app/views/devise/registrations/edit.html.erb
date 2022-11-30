@@ -29,6 +29,38 @@
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div class="alert alert-warning">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
+      
+      <div class="mb-3">
+        <%= f.text_field :state, autofocus: false, class: 'form-control', placeholder: "State of origin" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.text_field :nationality, autofocus: false, class: 'form-control', placeholder: "Nationality" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.text_field :gender, autofocus: false, class: 'form-control', placeholder: "Gender" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.text_field :level, autofocus: false, class: 'form-control', placeholder: "Level" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.date_field :birth_date, autofocus: false, class: 'form-control', placeholder: "Date of Birth" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.text_field :department, autofocus: false, class: 'form-control', placeholder: "Department" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.number_field :duration, autofocus: false, class: 'form-control', placeholder: "Duration" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.number_field :year, autofocus: false, class: 'form-control', placeholder: "Year" %>
+      </div>
 
       <div class="mb-3">
         <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password'  %>
